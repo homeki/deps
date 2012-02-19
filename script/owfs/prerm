@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" = "remove" ] ; then
+	if [ "X`service owfs status | grep running`" != "X" ]; then
+		service owfs stop
+	fi
+	sed '/fuse/d' /etc/modules > /etc/modules.new
+	mv /etc/modules.new /etc/modules
+	rm -f /etc/init/owfs.conf
+	rm -rf /mnt/1wire
+fi
+
+exit 0

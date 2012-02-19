@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" = "install" ] ; then
+	echo "first install, no service to stop"
+fi
+
+if [ "$1" = "upgrade" ] ; then
+	echo "stopping owfs"
+	service owfs stop
+fi
+
+exit 0

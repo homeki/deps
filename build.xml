@@ -1,0 +1,21 @@
+<project>
+	<input message="Specify architecture (i386|amd64/armel):" addproperty="arch" />
+	
+	<path id="ant-deb.classpath">
+		<fileset dir="." includes="*.jar" />
+	</path>
+	
+	<taskdef name="deb" classname="com.googlecode.ant_deb_task.Deb" classpathref="ant-deb.classpath" />
+	
+	<target name="owfs">
+		<mkdir dir="deb/" />
+		<deb todir="deb/" package="owfs" section="misc" prerm="script/owfs/prerm" postinst="script/owfs/postinst" preinst="script/owfs/preinst" architecture="${arch}">
+			<version upstream="2.8.14" />
+			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
+			<description synopsis="Allows access to 1-wire network through a 1-wire file system.">
+				Sets up a fuse file system for 1-wire.
+			</description>
+			<tarfileset dir="/opt/owfs" prefix="/opt/owfs/" filemode="755" />
+		</deb>
+	</target>
+</project>
