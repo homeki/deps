@@ -16,8 +16,8 @@ if [ "$1" = "configure" ] ; then
 	fi
 	
 	echo -n "create /mnt/1wire: "
-	if [ ! -f /mnt/1wire ]; then
-		mkdir /mnt/1wire
+	if [ ! -d /mnt/1wire ]; then
+		mkdir -p /mnt/1wire
 		echo "done"
 	else
 		echo "not needed, already exists"
