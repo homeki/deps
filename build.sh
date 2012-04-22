@@ -43,7 +43,6 @@ pushd $BASE > /dev/null
 mkdir -p source
 
 # Control what is built
-<<<<<<< HEAD
 setup_prereqs
 build_owfs
 build_telldus

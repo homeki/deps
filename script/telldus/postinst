@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" = "configure" ] ; then
+	if [ ! -f /etc/tellstick.conf ]; then
+		echo "user = \"nobody\"
+group = \"plugdev\"
+ignoreControllerConfirmation = \"false\"" > /etc/tellstick.conf
+		chmod 644 /etc/tellstick.conf
+	fi
+
+	echo "starting telldusd"
+	/etc/init.d/telldusd start
+fi
+
+exit 0
