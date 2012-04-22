@@ -18,4 +18,8 @@
 			<tarfileset dir="/opt/owfs" prefix="/opt/owfs/" filemode="755" />
 		</deb>
 	</target>
+
+	<target name="telldus">
+		<mkdir dir="deb/" />
+	</target>
 </project>
