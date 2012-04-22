@@ -7,6 +7,11 @@ set -e
 FULL_PATH=$(readlink -f $0)
 BASE=`dirname $FULL_PATH`
 
+function setup_prereqs() {
+	echo "===== setting up prereqs ====="
+	sudo apt-get install make
+}
+
 function build_owfs() {
 	echo "===== owfs build started ====="
 	sudo apt-get install fuse-utils libfuse-dev libusb-dev
@@ -38,5 +43,7 @@ pushd $BASE > /dev/null
 mkdir -p source
 
 # Control what is built
-#build_owfs
+<<<<<<< HEAD
+setup_prereqs
+build_owfs
 build_telldus

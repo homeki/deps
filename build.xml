@@ -1,5 +1,5 @@
 <project>
-	<input message="Specify architecture (i386|amd64/armel):" addproperty="arch" />
+	<input message="Specify architecture (i386|amd64|armhf):" addproperty="arch" />
 	
 	<path id="ant-deb.classpath">
 		<fileset dir="." includes="*.jar" />
