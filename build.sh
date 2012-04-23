@@ -9,7 +9,7 @@ BASE=`dirname $FULL_PATH`
 
 function setup_prereqs() {
 	echo "===== setting up prereqs ====="
-	sudo apt-get install make
+	sudo apt-get install make cmake g++
 }
 
 function build_owfs() {
@@ -26,6 +26,8 @@ function build_owfs() {
 }
 
 function build_telldus() {
+	# make sure the universe ubuntu repo is enabled, required
+	# for libconfuse0 and libconfuse-dev
 	echo "===== telldus build started ====="
 	sudo apt-get install libftdi1 libconfuse0 libconfuse-dev libftdi-dev
 	echo -n "Untaring: "
@@ -44,5 +46,5 @@ mkdir -p source
 
 # Control what is built
 setup_prereqs
-build_owfs
+#build_owfs
 build_telldus
