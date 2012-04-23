@@ -23,6 +23,8 @@ function build_owfs() {
 	./configure -prefix /opt/owfs --disable-owhttpd --disable-owftpd --enable-cache --enable-owfs --enable-usb --enable-mt
 	make -j3
 	sudo make install
+	popd > /dev/null
+	popd > /dev/null
 }
 
 function build_telldus() {
@@ -38,6 +40,8 @@ function build_telldus() {
 	cmake . -DCMAKE_INSTALL_PREFIX=/opt/telldus
 	make
 	sudo make install
+	popd > /dev/null
+	popd > /dev/null
 }
 
 # Change to base dir and create source dir
