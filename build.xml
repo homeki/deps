@@ -9,7 +9,7 @@
 	
 	<target name="owfs">
 		<mkdir dir="deb/" />
-		<deb todir="deb/" package="owfs" section="misc" prerm="script/owfs/prerm" postinst="script/owfs/postinst" preinst="script/owfs/preinst" architecture="${arch}">
+		<deb todir="deb/" package="owfs" section="misc" depends="libfuse2" prerm="script/owfs/prerm" postinst="script/owfs/postinst" preinst="script/owfs/preinst" architecture="${arch}">
 			<version upstream="2.8.14" />
 			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
 			<description synopsis="Allows access to 1-wire network through a 1-wire file system.">
@@ -21,7 +21,7 @@
 
 	<target name="telldus">
 		<mkdir dir="deb/" />
-		<deb todir="deb/" package="telldus" section="misc" prerm="script/telldus/prerm" postinst="script/telldus/postinst" preinst="script/telldus/preinst" architecture="${arch}">
+		<deb todir="deb/" package="telldus" section="misc" depends="libconfuse0, libftdi1" prerm="script/telldus/prerm" postinst="script/telldus/postinst" preinst="script/telldus/preinst" architecture="${arch}">
 			<version upstream="2.2.1" />
 			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
 			<description synopsis="Adds service and API for controlling/reading TellStick devices.">
