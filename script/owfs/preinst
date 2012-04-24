@@ -8,7 +8,9 @@ fi
 
 if [ "$1" = "upgrade" ] ; then
 	echo "stopping owfs"
-	service owfs stop
+	set +e
+	service owfs stop > /dev/null 2&>1
+	set -e
 fi
 
 exit 0
