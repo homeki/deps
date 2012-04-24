@@ -3,8 +3,9 @@
 set -e
 
 if [ "$1" = "remove" ] ; then
-	set +e
-	service owfs stop > /dev/null 2&>1
+	if [ "X`service owfs status | grep running`" != "X" ]; then
+		service owfs stop
+	fi
 	set -e
 	sed '/fuse/d' /etc/modules > /etc/modules.new
 	mv /etc/modules.new /etc/modules

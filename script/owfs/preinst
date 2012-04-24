@@ -8,9 +8,9 @@ fi
 
 if [ "$1" = "upgrade" ] ; then
 	echo "stopping owfs"
-	set +e
-	service owfs stop > /dev/null 2&>1
-	set -e
+	if [ "X`service owfs status | grep running`" != "X" ]; then
+		service owfs stop
+	fi
 fi
 
 exit 0
