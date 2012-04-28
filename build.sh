@@ -9,7 +9,7 @@ BASE=`dirname $FULL_PATH`
 
 function setup_prereqs() {
 	echo "===== setting up prereqs ====="
-	sudo apt-get install make cmake g++
+	sudo apt-get install make cmake g++ ant
 }
 
 function build_owfs() {
@@ -50,5 +50,5 @@ mkdir -p source
 
 # Control what is built
 setup_prereqs
-#build_owfs
+build_owfs
 build_telldus
