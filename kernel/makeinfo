@@ -1,10 +1,17 @@
 #!/bin/bash
 
+# Setup cross-compiling
 export ARCH=arm
 export CROSS_COMPILE=/usr/bin/arm-linux-gnueabihf-
-cd linux-3.3.1
+
+# Configure kernel according to cubox_defconfig
 make cubox_defconfig
+
+# Manually alter above configuration
 #make menuconfig
+
+# Build the kernel
 #make uImage KALLSYMS_EXTRA_PASS=1
 
+# Build modules, add install path
 INSTALL_MOD_PATH=arch/arm/modules make modules_install
