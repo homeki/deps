@@ -3,15 +3,24 @@
 set -e
 
 if [ "$1" = "configure" ] ; then
+	echo -n "creating /etc/tellstick.conf: "
 	if [ ! -f /etc/tellstick.conf ]; then
 		echo "user = \"nobody\"
 group = \"plugdev\"
 ignoreControllerConfirmation = \"false\"" > /etc/tellstick.conf
 		chmod 644 /etc/tellstick.conf
+		echo "done"
+	else
+		echo "not needed, already exists"
 	fi
 
-	echo "starting telldusd"
+        echo -n "adding S98telldusd symlink to runlevel 2: "
+        ln -sf /etc/init.d/telldusd /etc/rc2.d/S98telldusd
+        echo "done"
+
+	echo -n "starting telldusd: "
 	/etc/init.d/telldusd start
+	echo "done"
 fi
 
 exit 0

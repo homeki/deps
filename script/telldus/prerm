@@ -3,10 +3,17 @@
 set -e
 
 if [ "$1" = "remove" ] ; then
-	echo "stopping telldusd"
+	echo -n "stopping telldusd: "
 	/etc/init.d/telldusd stop
-	echo "removing /etc/tellstick.conf"
+	echo "done"
+
+	echo -n "removing S98telldusd symlink from runlevel 2: "
+	rm -rf /etc/rc2.d/S98telldusd
+	echo "done"
+
+	echo -n "removing /etc/tellstick.conf: "
 	rm -rf /etc/tellstick.conf
+	echo "done"
 fi
 
 exit 0
