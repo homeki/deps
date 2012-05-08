@@ -22,7 +22,7 @@
 	<target name="telldus">
 		<mkdir dir="deb/" />
 		<deb todir="deb/" package="telldus" section="misc" depends="libconfuse0, libftdi1" prerm="script/telldus/prerm" postinst="script/telldus/postinst" preinst="script/telldus/preinst" architecture="${arch}">
-			<version upstream="2.2.1" />
+			<version upstream="2.2.1" debian="2" />
 			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
 			<description synopsis="Adds service and API for controlling/reading TellStick devices.">
 				Installs telldusd service and include files for both running and linking against Telldus' TellStick.
