@@ -8,8 +8,19 @@ if [ "$1" = "configure" ] ; then
 		echo "user = \"nobody\"
 group = \"plugdev\"
 ignoreControllerConfirmation = \"false\"" > /etc/tellstick.conf
-		chmod 644 /etc/tellstick.conf
+		chown root:plugdev /etc/tellstick.conf
+		chmod 664 /etc/tellstick.conf
 		echo "done"
+	else
+		echo "not needed, already exists"
+	fi
+
+	echo -n "creating /var/state/telldus-core.conf"
+	if [ ! -f /var/state/telldus-core.conf ]; then
+		mkdir -p /var/state
+		touch /var/state/telldus-core.conf
+		chown root:plugdev /var/state/telldus-core.conf
+		chmod 666 /var/state/telldus-core.conf
 	else
 		echo "not needed, already exists"
 	fi
