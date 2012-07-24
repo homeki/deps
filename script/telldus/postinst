@@ -15,7 +15,7 @@ ignoreControllerConfirmation = \"false\"" > /etc/tellstick.conf
 		echo "not needed, already exists"
 	fi
 
-	echo -n "creating /var/state/telldus-core.conf"
+	echo -n "creating /var/state/telldus-core.conf: "
 	if [ ! -f /var/state/telldus-core.conf ]; then
 		mkdir -p /var/state
 		touch /var/state/telldus-core.conf
