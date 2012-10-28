@@ -28,7 +28,10 @@ function build_owfs() {
 }
 
 function build_telldus() {
-	# make sure the universe ubuntu repo is enabled, required
+	# if compile error in Socket_unix.cpp, add the include
+	# <unistd.h>
+	#
+	# also make sure the universe ubuntu repo is enabled, required
 	# for libconfuse0 and libconfuse-dev
 	echo "===== telldus build started ====="
 	sudo apt-get install libftdi1 libconfuse0 libconfuse-dev libftdi-dev
