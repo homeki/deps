@@ -23,17 +23,11 @@ if [ "$1" = "configure" ] ; then
 		echo "not needed, already exists"
 	fi
 
-	echo -n "creating /etc/init/owfs.conf: "
-	echo "description \"1-wire file system\"
+	# removes left-over upstart script when upgrading,
+	# can be removed later when all clients have upgraded
+	# to using /etc/init.d/owfs
+	rm -f /etc/init/owfs.conf
 
-start on runlevel [2345]
-stop on runlevel [!2345]
-
-respawn
-
-exec /opt/owfs/bin/owfs -u -m /mnt/1wire --allow_other --foreground" > /etc/init/owfs.conf
-	echo "done"
-	
 	echo "starting owfs"
 	service owfs start
 fi

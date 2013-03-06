@@ -10,19 +10,20 @@
 	<target name="owfs">
 		<mkdir dir="deb/" />
 		<deb todir="deb/" package="owfs" section="misc" depends="libfuse2" prerm="script/owfs/prerm" postinst="script/owfs/postinst" preinst="script/owfs/preinst" architecture="${arch}">
-			<version upstream="2.8.14" />
+			<version upstream="2.8.14" debian="3" />
 			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
 			<description synopsis="Allows access to 1-wire network through a 1-wire file system.">
 				Sets up a fuse file system for 1-wire.
 			</description>
 			<tarfileset dir="/opt/owfs" prefix="/opt/owfs/" filemode="755" />
+			<tarfileset file="script/owfs/owfs" prefix="/etc/init.d/" filemode="755" />
 		</deb>
 	</target>
 
 	<target name="telldus">
 		<mkdir dir="deb/" />
 		<deb todir="deb/" package="telldus" section="misc" depends="libconfuse0, libftdi1" prerm="script/telldus/prerm" postinst="script/telldus/postinst" preinst="script/telldus/preinst" architecture="${arch}">
-			<version upstream="2.2.1" debian="3" />
+			<version upstream="2.2.1" debian="4" />
 			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
 			<description synopsis="Adds service and API for controlling/reading TellStick devices.">
 				Installs telldusd service and include files for both running and linking against Telldus' TellStick.
