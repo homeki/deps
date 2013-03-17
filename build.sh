@@ -14,11 +14,11 @@ function setup_prereqs() {
 
 function build_owfs() {
 	echo "===== owfs build started ====="
-	sudo apt-get install fuse-utils libfuse-dev libusb-dev
+	sudo apt-get install fuse-utils libfuse-dev libusb-dev i2c-tools
 	echo -n "Untaring: "
 	pushd source > /dev/null
 	tar -xzf ../tar/owfs*
-	pushd owfs-2.8p14 > /dev/null
+	pushd owfs-2.9p0 > /dev/null
 	echo "done"
 	./configure -prefix /opt/owfs --disable-owhttpd --disable-owftpd --enable-cache --enable-owfs --enable-usb --enable-mt
 	make -j3
@@ -52,6 +52,6 @@ pushd $BASE > /dev/null
 mkdir -p source
 
 # Control what is built
-setup_prereqs
+#setup_prereqs
 build_owfs
-build_telldus
+#build_telldus

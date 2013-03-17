@@ -28,8 +28,10 @@ if [ "$1" = "configure" ] ; then
 	# to using /etc/init.d/owfs
 	rm -f /etc/init/owfs.conf
 
+	update-rc.d owfsd defaults 97
+
 	echo "starting owfs"
-	service owfs start
+	/etc/init.d/owfsd start
 fi
 
 exit 0

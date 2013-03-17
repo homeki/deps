@@ -25,9 +25,16 @@ ignoreControllerConfirmation = \"false\"" > /etc/tellstick.conf
 		echo "not needed, already exists"
 	fi
 
-        echo -n "adding S98telldusd symlink to runlevel 2: "
-        ln -sf /etc/init.d/telldusd /etc/rc2.d/S98telldusd
-        echo "done"
+	if [ ! -f /etc/rc3.d/S98telldusd ]; then
+		# The rc3.d S98telldusd does not exist, make sure we don't
+		# have a left-over S98telldusd in rc2.d which prevents
+		# update-rc.d from adding symlinks to all runlevels
+		# (check can be removed when all running servers are
+		#  updated)
+		rm -f /etc/rc2.d/S98telldusd	
+	fi	
+	
+        update-rc.d telldusd defaults 98
 
 	echo -n "starting telldusd: "
 	/etc/init.d/telldusd start

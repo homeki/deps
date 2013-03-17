@@ -1,8 +1,9 @@
 #! /bin/sh
+
 ### BEGIN INIT INFO
-# Provides:          skeleton
-# Required-Start:    $remote_fs $syslog
-# Required-Stop:     $remote_fs $syslog
+# Provides:          owfsd
+# Required-Start:    $local_fs $remote_fs $syslog
+# Required-Stop:     $local_fs $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: OWFS
@@ -18,7 +19,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="1-wire file system for reading/writing 1-wire devices"
 NAME=owfs
 DAEMON=/opt/owfs/bin/$NAME
-DAEMON_ARGS="-u -m /mnt/1wire --allow_other --foreground"
+DAEMON_ARGS="-m /mnt/1wire --i2c=ALL:ALL --allow_other"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
