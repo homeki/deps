@@ -3,12 +3,21 @@
 set -e
 
 if [ "$1" = "remove" ] ; then
-	if [ "X`service owfs status | grep running`" != "X" ]; then
-		service owfs stop
+	echo -n "stopping owfsd: "
+	/etc/init.d/owfsd stop
+	echo "done"
+
+	update-rc.d owfsd remove
+
+	if [[ -f /etc/modprobe.d/raspi-blacklist.conf ]]; then
+		sed -i -e 's/#blacklist i2c-bcm2708/blacklist i2c-bcm2708/g' /etc/modprobe.d/raspi-blacklist.conf
 	fi
-	set -e
+	
 	sed '/fuse/d' /etc/modules > /etc/modules.new
 	mv /etc/modules.new /etc/modules
+	sed '/i2c-dev/d' /etc/modules > /etc/modules.new
+	mv /etc/modules.new /etc/modules
+
 	rm -rf /mnt/1wire
 fi
 

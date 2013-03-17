@@ -14,7 +14,24 @@ if [ "$1" = "configure" ] ; then
 	else
 		echo "not needed, already exists"
 	fi
-	
+
+	echo -n "add i2c-dev to /etc/modules: "
+	if [ "X`cat /etc/modules | grep i2c-dev`" == "X" ]; then
+		echo "i2c-dev" >> /etc/modules
+		echo "done"
+	else
+		echo "not needed, already exists"
+	fi
+
+	echo -n "looking for raspi-blacklist.conf: "
+	if [[ -f /etc/modprobe.d/raspi-blacklist.conf ]]; then
+		echo "found it, removing i2c from blacklist"
+		sed -i -e 's/#blacklist i2c-bcm2708/blacklist i2c-bcm2708/g' /etc/modprobe.d/raspi-blacklist.conf
+		sed -i -e 's/blacklist i2c-bcm2708/#blacklist i2c-bcm2708/g' /etc/modprobe.d/raspi-blacklist.conf
+	else
+		echo "not found"
+	fi
+
 	echo -n "create /mnt/1wire: "
 	if [ ! -d /mnt/1wire ]; then
 		mkdir -p /mnt/1wire

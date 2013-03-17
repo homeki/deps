@@ -19,7 +19,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="1-wire file system for reading/writing 1-wire devices"
 NAME=owfs
 DAEMON=/opt/owfs/bin/$NAME
-DAEMON_ARGS="-m /mnt/1wire --i2c=ALL:ALL --allow_other"
+DAEMON_ARGS="-u -m /mnt/1wire --i2c=ALL:ALL --allow_other"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 

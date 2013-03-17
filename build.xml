@@ -9,8 +9,8 @@
 	
 	<target name="owfs">
 		<mkdir dir="deb/" />
-		<deb todir="deb/" package="owfs" section="misc" depends="libfuse2" prerm="script/owfs/prerm" postinst="script/owfs/postinst" preinst="script/owfs/preinst" architecture="${arch}">
-			<version upstream="2.8.14" debian="3" />
+		<deb todir="deb/" package="owfs" section="misc" depends="libfuse2 i2c-tools" prerm="script/owfs/prerm" postinst="script/owfs/postinst" preinst="script/owfs/preinst" architecture="${arch}">
+			<version upstream="2.9.0" debian="1" />
 			<maintainer name="Homeki Development Team" email="contact@homeki.com" />
 			<description synopsis="Allows access to 1-wire network through a 1-wire file system.">
 				Sets up a fuse file system for 1-wire.
