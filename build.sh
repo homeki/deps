@@ -27,6 +27,20 @@ function build_owfs() {
 	popd > /dev/null
 }
 
+function build_open-zwave() {
+	echo "===== open-zwave build started ====="
+	sudo apt-get install libudev-dev
+	echo -n "Untaring: "
+	pushd source > /dev/null
+	tar -xzf ../tar/open-zwave*
+	pushd open-zwave-1.0.779 > /dev/null
+	echo "done"
+	make
+	sudo PREFIX=/opt/open-zwave make install
+	popd > /dev/null
+	popd > /dev/null
+}
+
 function build_telldus() {
 	# if compile error in Socket_unix.cpp, add the include
 	# <unistd.h>
@@ -53,5 +67,6 @@ mkdir -p source
 
 # Control what is built
 #setup_prereqs
-build_owfs
+#build_owfs
 #build_telldus
+build_open-zwave
